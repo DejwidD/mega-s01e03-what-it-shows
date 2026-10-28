@@ -10,10 +10,12 @@ owner: DejwidD · status: known · reviewed: 2026-10-28
 Ticket #4471 holds **412 unique reports** about dates on the wrong day. They are not one bug.
 They are two problems, and each needs its own ticket.
 
-| problem | reports | ticket |
-| --- | --- | --- |
-| The shared parser flips day and month for day-first tenants | 379 | [#1](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/1) |
-| `booking-v3` prints a month-first hint to day-first tenants | 33 | [#2](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/2) |
+| problem | reports | ticket | outcome |
+| --- | --- | --- | --- |
+| The shared parser flips day and month for day-first tenants | 379 | [#1](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/1) | fixed: `fix(dates): parse dd/mm for eu locales` |
+| `booking-v3` prints a month-first hint to day-first tenants | 33 | [#2](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/2) | won't fix: the booking-v3 form is retired |
+
+Engineering closed #4471 on 5 October with these two outcomes.
 
 ### 1. Parser flips day and month (379)
 
