@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 · dates have three problems'
+title: '#4471 · dates have two causes'
 owner: DejwidD
 status: known
 reviewed: 2026-10-28
@@ -15,18 +15,20 @@ signature: v1.eyJzdWIiOiIzOTc0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 # What #4471 contains
 
 Ticket #4471 holds **412 unique reports** about dates on the wrong day. They are not one bug.
-They are three problems, and each needs its own ticket.
+They are two problems, and each needs its own ticket.
 
 | problem | reports | ticket |
 | --- | --- | --- |
-| The shared parser flips day and month for day-first tenants | 374 | [#1](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/1) |
+| The shared parser flips day and month for day-first tenants | 379 | [#1](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/1) |
 | `booking-v3` prints a month-first hint to day-first tenants | 33 | [#2](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/2) |
-| A booking moves by one day, with day and month intact | 5 | [#3](https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/3) |
 
-## 1. Parser flips day and month (374)
+## 1. Parser flips day and month (379)
 
 The shared parser reads every date month first. Day-first tenants see their dates flipped,
 for example 4 July going out as 7 April. This covers 11 tenants and every channel.
+
+Five of these reports read as a one-day move (R-41202, R-41209, R-41236, R-41344, R-41620).
+The desk files them under their cause, so they stay in this count.
 
 ## 2. The booking-v3 hint is wrong (33)
 
@@ -34,18 +36,7 @@ for example 4 July going out as 7 April. This covers 11 tenants and every channe
 the hint tells them, and the form reads it their way. All 33 reports are form reports from
 three tenants: `alder.physio`, `copper.studio` and `pale.harbour`.
 
-## 3. One-day moves (5)
-
-Five reports describe a booking that moved by exactly one day. The month and day are not
-swapped. Examples: Tuesday 12 May shows as Monday 11 May, and a client in Lisbon got Tuesday
-while a client in Toronto got Monday for the same meeting. This looks like a time zone
-problem, not a parsing problem. The report ids are R-41202, R-41209, R-41236, R-41344 and
-R-41620.
-
-## What the table says, and why it differs
-
-The table below sorts by cause with the desk's own code. It files the five one-day moves under
-`parser`, so it shows 379 there, and footnotes them. They are counted once here, under problem 3.
+## Evidence
 
 <CauseTable ticket={4471} />
 
