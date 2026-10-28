@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#4471 · dates have two causes · support kb</title>
+<style>:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a66;--line:#e3e0d8;--accent:#2f6f5e;--warn:#b4501f;--warn-bg:#fbeee6;--note-bg:#eef5f2;--mono:ui-monospace,'Cascadia Code',Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#171716;--fg:#ecebe6;--muted:#9c9a93;--line:#34332f;--accent:#6fbfa6;--warn:#f0905d;--warn-bg:#3a2418;--note-bg:#1d2c27}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}
+.kb table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}
+.kb th,.kb td{border-bottom:1px solid var(--line);padding:.35rem .5rem;text-align:left}
+.kb code{font-family:var(--mono);font-size:.88em}.kb a{color:var(--accent)}
+.kb{max-width:760px;margin:0 auto;padding:2rem 16px 4rem}
+.crumb{font:.8rem var(--mono);text-decoration:none;color:var(--muted)}
+header h1{margin:.25rem 0 .5rem;line-height:1.2}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1rem;color:var(--muted);font-size:.85rem;margin:0}
+.status{border:1px solid var(--line);border-radius:99px;padding:0 .6rem}
+.stale{color:var(--warn);font-weight:600}.banner{background:var(--warn-bg);color:var(--warn);padding:.6rem 1rem;border-radius:6px}
+footer{margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:1rem}
+.sum{font-size:1.1rem}.tags{color:var(--muted);font-size:.85em}.note{color:var(--muted);font-size:.85em}
+.wrong td{background:var(--warn-bg)}.wrong td:last-child{color:var(--warn);font-weight:600}
+.stamp{margin:2rem 0 0;font:.85rem var(--mono);color:var(--muted)}.stamp b{color:var(--accent);letter-spacing:.04em}</style>
+</head>
+<body>
+<div class="kb">
+  <header>
+    <a class="crumb" href="/kb">support desk · kb</a>
+    <h1>#4471 · dates have two causes</h1>
+    <p class="meta">
+      <span>owner <b>DejwidD</b></span>
+      <span class="status known">known</span>
+      <span class="">reviewed 2026-10-28 · 0 days ago</span>
+    </p>
+  </header>
+  
+  <main>
+<h1 id="what-4471-contains">What #4471 contains</h1>
+<p>Ticket #4471 holds <strong>412 unique reports</strong> about dates on the wrong day. They are not one bug. They are two problems, and each needs its own ticket.</p>
+<table>
+<thead><tr><th>problem</th><th>reports</th><th>ticket</th><th>outcome</th></tr></thead>
+<tbody>
+<tr><td>The shared parser flips day and month for day-first tenants</td><td>379</td><td><a href="https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/1">#1</a></td><td>fixed: <code>fix(dates): parse dd/mm for eu locales</code></td></tr>
+<tr><td><code>booking-v3</code> prints a month-first hint to day-first tenants</td><td>33</td><td><a href="https://github.com/DejwidD/mega-s01e03-what-it-shows/issues/2">#2</a></td><td>won't fix: the booking-v3 form is retired</td></tr>
+</tbody>
+</table>
+<p>Engineering closed #4471 on 5 October with these two outcomes.</p>
+<h2 id="1-parser-flips-day-and-month">1. Parser flips day and month (379)</h2>
+<p>The shared parser reads every date month first. Day-first tenants see their dates flipped, for example 4 July going out as 7 April. This covers 11 tenants and every channel.</p>
+<p>Five of these reports read as a one-day move (R-41202, R-41209, R-41236, R-41344, R-41620). The desk files them under their cause, so they stay in this count.</p>
+<h2 id="2-the-booking-v3-hint-is-wrong">2. The booking-v3 hint is wrong (33)</h2>
+<p><code>booking-v3</code> prints <code>MM/DD/YYYY</code> under the date field. People at day-first tenants type what the hint tells them, and the form reads it their way. All 33 reports are form reports from three tenants: <code>alder.physio</code>, <code>copper.studio</code> and <code>pale.harbour</code>.</p>
+<h2 id="evidence">Evidence</h2>
+<p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
+<table>
+  <thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead>
+  <tbody>
+      <tr class="">
+        <td><code>parser</code></td>
+        <td>379</td>
+        <td class="tags">parser ×356 · hint ×23</td>
+        <td>11</td>
+        <td>2026-04-01 → 2026-10-04</td>
+        <td>#4471</td>
+      </tr>
+      <tr class="wrong">
+        <td><code>hint</code></td>
+        <td>33</td>
+        <td class="tags">hint ×18 · parser ×15</td>
+        <td>3</td>
+        <td>2026-04-17 → 2026-09-22</td>
+        <td>not this ticket — no ticket of its own</td>
+      </tr>
+  </tbody>
+</table>
+<p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
+
+<p>The export has 427 rows and 15 of them repeat a report id. All counts use one row per id.</p>
+<p class="stamp">desk ref <b>DR-BZJ3-B1NA</b></p>
+  </main>
+  <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
+</div>
+</body>
+</html>
