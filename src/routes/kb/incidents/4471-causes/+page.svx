@@ -1,0 +1,42 @@
+---
+layout: runbook
+title: '#4471 · dates have two causes'
+owner: DejwidD
+status: known
+reviewed: 2026-10-28
+signature: DejwidD
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+# What #4471 contains
+
+Ticket #4471 contains **412 unique reports** about dates landing on the wrong day.
+The merged reports are two different problems, so the desk should track two tickets.
+
+## The two problems
+
+### Parser reads day-first dates as month-first
+
+The shared parser reads every date month first. Day-first tenants using `booking-v2`,
+and non-form reports from day-first tenants using `booking-v3`, can therefore have the
+day and month flipped. This cause covers **379 reports**.
+
+### booking-v3 shows the wrong hint
+
+The `booking-v3` form shows `MM/DD/YYYY` to day-first tenants. People follow that hint,
+but the form reads the value using the tenant's day-first convention. This cause covers
+**33 reports**.
+
+## Evidence from the export
+
+<CauseTable ticket={4471} />
+
+The counts above use one report per report ID. The export has overlapping pages, so its
+427 rows contain 15 duplicate rows. Five parser reports were read as a one-day move and
+filed under the parser cause; they remain part of the parser count.
+
+<RenderStamp {signature} />
